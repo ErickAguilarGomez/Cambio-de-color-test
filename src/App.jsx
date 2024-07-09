@@ -1,18 +1,26 @@
-import { useState } from "react";
+import { createContext, useState } from "react";
+import UserData from "./components/UserData";
+
+const userContext = createContext();
 
 function App() {
-  const [value,setValue]=useState(false)
+  const [input, setInput] = useState({
+    nombre: "",
+    apellido: "",
+    email: ""
+  });
 
-  function toggleValue(){
-    setValue(!value)
-    console.log(value)
+  function handleInput(event) {
+    const { name, value } = event.target;
+    setInput(prevInput => ({ ...prevInput, [name]: value }));
   }
 
-  return (<>
-  {value===false? <h1 className="bg-red-800 w-screen h-96" onClick={toggleValue}>Color sin cambiar</h1>:<h1 onClick={toggleValue}>Color cambiado</h1>}
-  
-  
-  </>)
+  return (
+    <userContext.Provider value={{ input, handleInput }}>
+      <UserData />
+    </userContext.Provider>
+  );
 }
 
 export default App;
+export { userContext };
