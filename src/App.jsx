@@ -1,26 +1,13 @@
-import { createContext, useState } from "react";
-import UserData from "./components/UserData";
-
-const userContext = createContext();
+import Main from "./components/Main";
+import Home from "./views/Home";
 
 function App() {
-  const [input, setInput] = useState({
-    nombre: "",
-    apellido: "",
-    email: ""
-  });
-
-  function handleInput(event) {
-    const { name, value } = event.target;
-    setInput(prevInput => ({ ...prevInput, [name]: value }));
-  }
-
-  return (
-    <userContext.Provider value={{ input, handleInput }}>
-      <UserData />
-    </userContext.Provider>
-  );
+  return(
+    <>
+    <Home></Home>
+    <Main></Main>
+    </>
+  )
 }
 
 export default App;
-export { userContext };
