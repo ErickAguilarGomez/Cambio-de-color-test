@@ -1,16 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import ProductCard from "../Utils/ProductCard";
-import { DenisProvedor } from "../views/Home";
+import DenisContext from "../context/DenisContext";
+
 
 export default function Main() {
   const [events, setEvents] = useState([]);
-const {filteredEventos}=useContext(DenisProvedor)
+  const  {value}=useContext(DenisContext)
 
-  useEffect(() => {
+ /* useEffect(() => {
     if (filteredEventos) {
       setEvents(filteredEventos);
     }
   }, [filteredEventos]);
+*/
+
 
   return (
     <main className="container mx-auto p-6">

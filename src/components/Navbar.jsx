@@ -1,9 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { DenisProvedor } from "../views/Home";
 
 const Navbar = () => {
-
-const {filteredProducts}= useContext(DenisProvedor)
 
   const handleInputChange = (e) => {
     filteredProducts(e.target.value);
