@@ -1,10 +1,14 @@
 import { useContext, useEffect, useState } from "react";
+import DenisContext from "../context/DenisContext";
 
 const Navbar = () => {
-
+  const {filteredProducts} = useContext(DenisContext);
+  
   const handleInputChange = (e) => {
-    filteredProducts(e.target.value);
+    const event=e.target.value
+    filteredProducts(event)
   };
+
 
   return (
     <header className="flex justify-between bg-red-500">

@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import Main from "../components/Main";
 import Navbar from "../components/Navbar";
-import DenisProvider from "../context/DenisProvider";
-
-
+import DenisContext from "../context/DenisContext";
 
 export default function Home() {
-  const [filteredEventos, setFilteredEventos] = useState([]);
-
+  const { setProductos, setFilteredEventos } = useContext(DenisContext);
+    
   useEffect(() => {
     async function fetchEvents() {
       try {
@@ -17,6 +15,7 @@ export default function Home() {
         const data = await response.json();
         const events = data._embedded.events;
         setFilteredEventos(events);
+        setProductos(events)
       } catch (error) {
         console.error("Error fetching events:", error);
       }
@@ -26,19 +25,10 @@ export default function Home() {
   }, []);
 
 
-  function filteredProducts(evento) {
-    const products = filteredEventos.filter((producto) => 
-      producto.name.toLowerCase().includes(evento.toLowerCase())
-    );
-    setFilteredEventos(products);
-  }
-
   return (
-
-    
-    <DenisProvider>
+    <>
       <Navbar />
       <Main />
-      </DenisProvider>
+    </>
   );
 }
