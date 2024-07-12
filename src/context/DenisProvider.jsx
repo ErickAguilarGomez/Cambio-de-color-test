@@ -4,8 +4,9 @@ import DenisContext from "./DenisContext";
 const DenisProvider = ({children}) => {
   const [filteredEventos, setFilteredEventos] = useState([]);
   const [productos,setProductos]=useState([])
+  console.log(productos)
 
-   const filteredProducts=useCallback(({evento})=> {
+   const filteredProducts=useCallback((evento)=> {
     const products = productos.filter((producto) =>
       producto.name.toLowerCase().includes(evento.toLowerCase())
     );
